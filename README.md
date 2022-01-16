@@ -30,17 +30,29 @@ http://www.bawt.tcl3d.org/preview.html
 Disclaimer: Do NOT use the one bundled with mingw64 (stupid mingw64 tcl/tk include separation into "generic" and "win", and then some outside - we need them in THE SAME PLACE!!!). Else the vtk application will crash/quit for no reason, especially right after a vtkTkRenderWidget initialization - which is the WHOLE POINT of vtk integration to tcl/tk.
 12. Change TK_INTERNAL_PATH to be the same with TK_INCLUDE_PATH (after make install-private-headers)
 13. Finally, click "Generate"
-14. Cd to the build directory. For Windows, make sure to run msys2-mingw64 instead of msys2-msys console.
+14. Cd to the build directory:
+
+<code>cd <build_directory></code>
+
+For Windows, make sure to run msys2-mingw64 instead of msys2-msys console.
 To speed up, type:
-make -j8
+
+<code>make -j8</code>
+	
 for 8 thread parallel build.
 Type:
-make <specific_vtk_module>
+	
+<code>make <specific_vtk_module></code>
+	
 e.g.
-make vtkRenderingLabel
+	
+<code>make vtkRenderingLabel</code>
+	
 To make a specific module only (in case something went wrong and you don't want the output to be flooded with other module's building logs.
 15. Once it's done, type:
-make install
+	
+<code>make install</code>
+	
 The vtk modules for tcl are located in <install_dir>/lib/tcltk/vtk-7.1. The compiled dynamic libraries are in <install_dir>/bin. Simply copy this whole vtk-7.1 folder into the tcl or tk lib directory, where all other tcl/tk module directories are located, and make sure the dynamic libraries are in PATH and LD_LIBRARY_PATH. The easiest way is to copy those dynamic libraries into the same directory where tclsh.exe and/or wish.exe are located.
 To use vtk in wish/tcl, type
 package require vtk
